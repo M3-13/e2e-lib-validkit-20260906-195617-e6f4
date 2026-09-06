@@ -47,9 +47,9 @@ def test_signatures_match_contract():
         params, annotations, return_annotation, defaults = EXPECTED_SIGNATURES[name]
         sig = inspect.signature(getattr(validkit, name))
         assert list(sig.parameters) == params, name
-        for pname, expected_annotation in zip(params, annotations, strict=True):
+        for index, pname in enumerate(params):
             param = sig.parameters[pname]
-            assert param.annotation == expected_annotation, (name, pname)
+            assert param.annotation == annotations[index], (name, pname)
             if pname in defaults:
                 assert param.default == defaults[pname], (name, pname)
             else:
