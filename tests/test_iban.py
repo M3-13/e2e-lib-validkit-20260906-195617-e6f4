@@ -11,6 +11,14 @@ def test_valid_foreign_iban_returns_true():
     assert is_valid_iban("GB82WEST12345698765432") is True
 
 
+def test_valid_senegal_iban_returns_true():
+    assert is_valid_iban("SN53AB1234567890123456789012") is True
+
+
+def test_valid_cameroon_iban_returns_true():
+    assert is_valid_iban("CM54AB123456789012345678901") is True
+
+
 def test_wrong_checksum_returns_false():
     assert is_valid_iban("DE89370400440532013001") is False
 
