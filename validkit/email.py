@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import re
+
+_EMAIL_RE = re.compile(r"[^@\s]+@[^@\s]+\.[^@\s]+")
+
 
 def is_valid_email(text: str) -> bool:
     """Return True if ``text`` is a syntactically valid email address.
@@ -7,4 +11,6 @@ def is_valid_email(text: str) -> bool:
     Returns False for addresses with missing parts (e.g. ``test@``) rather than
     raising.
     """
-    raise NotImplementedError("is_valid_email is not implemented yet")
+    if not isinstance(text, str):
+        raise TypeError("is_valid_email expects a str argument")
+    return _EMAIL_RE.fullmatch(text) is not None
